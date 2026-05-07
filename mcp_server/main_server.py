@@ -13,8 +13,8 @@ SECURITY_PORT = os.getenv('SECURITY_PORT')
 
 async def server():
     await asyncio.gather(
-        security_server.run_async(transport="sse", port=SECURITY_PORT),
-        manager_server.run_async(transport="sse", port=MANAGER_PORT),
+        security_server.run_async(transport="sse", host="0.0.0.0", port=int(SECURITY_PORT)),
+        manager_server.run_async(transport="sse", host="0.0.0.0", port=int(MANAGER_PORT)),
     )
 
 asyncio.run(server())
